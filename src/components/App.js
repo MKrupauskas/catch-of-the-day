@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import sampleFishes from '../sample-fishes'
 import base from '../base'
@@ -9,6 +10,10 @@ import Order from './Order'
 import Fish from './Fish'
 
 class App extends React.Component {
+	static propTypes = {
+		match: PropTypes.object
+	}
+
 	state = {
 		fishes: {},
 		order: {}
@@ -88,7 +93,11 @@ class App extends React.Component {
 						))}
 					</ul>
 				</div>
-				<Order fishes={this.state.fishes} order={this.state.order} removeFromOrder={this.removeFromOrder}/>
+				<Order
+					fishes={this.state.fishes}
+					order={this.state.order}
+					removeFromOrder={this.removeFromOrder}
+				/>
 				<Inventory
 					fishes={this.state.fishes}
 					addFish={this.addFish}

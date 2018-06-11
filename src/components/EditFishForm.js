@@ -1,10 +1,25 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 class EditFishForm extends React.Component {
+	static propTypes = {
+		fish: PropTypes.shape({
+			name: PropTypes.string,
+			price: PropTypes.number,
+			status: PropTypes.string,
+			desc: PropTypes.string,
+			image: PropTypes.string
+		}),
+		index: PropTypes.string,
+		updateFish: PropTypes.func
+	}
+
 	handleChange = event => {
+		const value =
+			parseFloat(event.currentTarget.value) || event.currentTarget.value
 		const updatedFish = {
 			...this.props.fish,
-			[event.currentTarget.name]: event.currentTarget.value
+			[event.currentTarget.name]: value
 		}
 		this.props.updateFish(this.props.index, updatedFish)
 	}
@@ -19,7 +34,7 @@ class EditFishForm extends React.Component {
 					onChange={this.handleChange}
 				/>
 				<input
-					type="text"
+					type="number"
 					name="price"
 					value={this.props.fish.price}
 					onChange={this.handleChange}
