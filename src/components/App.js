@@ -1,6 +1,7 @@
 import React from 'react'
 
 import sampleFishes from '../sample-fishes'
+import base from '../base'
 
 import Header from './Header'
 import Inventory from './Inventory'
@@ -11,6 +12,34 @@ class App extends React.Component {
 	state = {
 		fishes: {},
 		order: {}
+	}
+
+	componentDidMount() {
+		const { params } = this.props.match
+		const localStorageRef = localStorage.getItem(params.storeId)
+		if (localStorageRef) {
+			this.setState({ order: JSON.parse(localStorageRef) })
+		}
+		this.ref = base.syncState(`${params.storeId}/fishes`, {
+			context: this,
+			state: 'fishes'
+		})
+	}
+
+	componentDidUpdate() {
+		console.log(
+			this.props.match.params.storeId,
+			JSON.stringify(this.state.order)
+		)
+		localStorage.setItem(
+			this.props.match.params.storeId,
+			JSON.stringify(this.state.order)
+		)
+	}
+
+	componentWillUnmount() {
+		// when components unmounts remove any memory issues
+		base.removeBinding(this.ref)
 	}
 
 	loadSampleFishes = () => {
