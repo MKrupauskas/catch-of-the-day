@@ -28,12 +28,14 @@ class EditFishForm extends React.Component {
 		return (
 			<div className="fish-edit">
 				<input
+					required
 					type="text"
 					name="name"
 					value={this.props.fish.name}
 					onChange={this.handleChange}
 				/>
 				<input
+					required
 					type="number"
 					name="price"
 					value={this.props.fish.price}
@@ -48,11 +50,13 @@ class EditFishForm extends React.Component {
 					<option value="unavailable">Sold Out!</option>
 				</select>
 				<textarea
+					required
 					name="desc"
 					value={this.props.fish.desc}
 					onChange={this.handleChange}
 				/>
 				<input
+					required
 					type="text"
 					name="image"
 					value={this.props.fish.image}
