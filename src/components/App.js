@@ -100,6 +100,7 @@ class App extends React.Component {
 				/>
 				<Inventory
 					fishes={this.state.fishes}
+					storeId={this.props.match.params.storeId}
 					addFish={this.addFish}
 					updateFish={this.updateFish}
 					deleteFish={this.deleteFish}
