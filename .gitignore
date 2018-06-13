@@ -64,4 +64,4 @@ typings/
 .next
 
 # env js file (temporary)
-env.js
+myenv.js
